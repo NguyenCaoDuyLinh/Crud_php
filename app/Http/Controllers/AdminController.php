@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Product;
+use App\Services\AdminService;
 class AdminController extends Controller
 {
     /**
@@ -11,11 +12,20 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct(AdminService $adminService)
     {
-        //
+        $this->adminService = $adminService;
+    }
+     public function index()
+    {
+        return view('admin/index');
+
     }
 
+    public function getListAdmin(){
+        $admins = $this->adminService->getList();
+        return view('admin/adminlist',compact('admins'));
+    }
     /**
      * Show the form for creating a new resource.
      *

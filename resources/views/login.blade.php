@@ -14,7 +14,8 @@
 			<img src="{{ asset('img/bg.svg ') }}">
 		</div>
 		<div class="login-content">
-			<form action="index.html">
+			<form action="{{ route('admin.checklogin') }} " method="post">
+			{{ csrf_field() }}
 				<img src="{{ asset('img/avatar.svg') }}">
 				<h2 class="title">Welcome</h2>
            		<div class="input-div one">
@@ -22,8 +23,8 @@
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-           		   		<h5>Username</h5>
-           		   		<input type="text" class="input">
+           		   		<h5>Email</h5>
+           		   		<input type="text" class="input"  name="email">
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -32,11 +33,11 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" class="input">
+           		    	<input type="password" class="input"  name="password">
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>
-            	<input type="submit" class="btn" value="Login">
+				<button type="submit" class="btn">Login</button>
             </form>
         </div>
     </div>
