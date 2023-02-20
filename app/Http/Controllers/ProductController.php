@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ProductService;
+use App\Services\CategoryService;
 class ProductController extends Controller
 {
     /**
@@ -11,9 +12,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(ProductService $productService)
+    public function __construct(ProductService $productService, CategoryService $categoryService)
     {
         $this->productService = $productService;
+        $this->categoryService = $categoryService;
     }
     public function getListProduct(){
         $products = $this->productService->getList();
@@ -31,7 +33,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $cats = $this->categoryService->getList();
+        return view('admin/addproduct',compact('cats'));
     }
 
     /**

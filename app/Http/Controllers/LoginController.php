@@ -21,7 +21,7 @@ class LoginController extends Controller
     }    
     public function login(LoginRequest $request)
     {
-        $result = DB::table('admins')->where('email',$request->email)->where('password',$request->password);
+        $result = DB::table('users')->where('email',$request->email)->where('password',$request->password);
         
         if ($result) {
             $request->session()->regenerate();
@@ -34,7 +34,10 @@ class LoginController extends Controller
     {
         return redirect()->route('admin.login');
     }
-
+    public function getFormAdmin()
+    {
+        return view('admin/index');
+    }
     /**
      * Show the form for creating a new resource.
      *

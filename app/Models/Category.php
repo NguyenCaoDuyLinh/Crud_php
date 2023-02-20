@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-class Product extends Model
+class Category extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -17,16 +17,7 @@ class Product extends Model
      */
     protected $fillable = [
         'Category_id',
-        'SKU',
-        'Name',
-        'Publising_company_id',
-        'Author',
-        'Price',
-        'Quantity',
-        'Description',
-        'Date',
-        'Avatar'
-
+        'Category_name',
     ];
 
 }

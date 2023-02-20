@@ -15,13 +15,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/login', [LoginController::class, 'index'])->name('admin.login');
 Route::post('/login',[LoginController::class,'login'])->name('admin.checklogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
-Route::get('/dashboard',[AdminController::class,'index'])->name('admin.index');
+Route::get('/dashboard',[LoginController::class,'index'])->name('admin.index');
 Route::get('/listproduct',[ProductController::class,'getListProduct'])->name('product.list');
-Route::get('/listadmin',[AdminController::class,'getListAdmin'])->name('admin.list');
+Route::get('/addproduct',[ProductController::class,'create'])->name('product.add');
