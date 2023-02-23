@@ -4,21 +4,29 @@
 namespace App\Services;
 
 
+use App\Models\Product;
 use App\Models\Category;
+use App\Models\Publishing_company;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
 class CategoryService
 {
-    public function __construct(Category $cat)
+    public function __construct(Category $category)
     {
-        $this->cat = $cat;
+        $this->category = $category;
     }
-
-    function getList()
+    function updateCategory($request, $id)
     {
-        $cat = $this->cat->get();
+        try {
+            $this->category = Category::where('Category_id', $id);
+            $this->category->Category_name = $request->Category_name;
+            $this->category->save();  
+            return true;
+        } catch (Exception $e) {
+            Log::error($e);
 
-        return $cat;
+            return false;
+        }
     }
 }

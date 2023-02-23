@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class admin extends Model
+class Publishing_company extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -17,9 +17,7 @@ class admin extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'level',
+        'Publishing_Company_ID',
+        'Publishing_Company_Name',
     ];
 }

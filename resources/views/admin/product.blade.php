@@ -30,10 +30,11 @@
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Author</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Publishing Company</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quantity</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Image</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                             </tr>
                         </thead>
@@ -53,6 +54,9 @@
                                     <p class="text-sm font-weight-bold mb-0">{{ $product->Author }}</p>
                                 </td>
                                 <td>
+                                    <p class="text-center font-weight-bold mb-0">{{ $product->Publishing_Company_Id }}</p>
+                                </td>
+                                <td>
                                     <p class="text-sm font-weight-bold mb-0">{{ $product->Price }}</p>
                                 </td>
                                 <td>
@@ -67,7 +71,7 @@
                                     </div>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                    <a href="{{ route('product.edit', $product->Product_Id) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                         Edit
                                     </a>
                                     <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
@@ -78,9 +82,13 @@
                         </tbody>
                         @endforeach
                     </table>
-                </div>
+                    
+                </div>     
             </div>
         </div>
     </div>
 </div>
+{{
+    $products->appends(request()->all())->links()
+}}
 @stop()

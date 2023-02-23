@@ -2,42 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use Illuminate\Contracts\Session\Session;
+use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-session_start();
-class LoginController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
     public function index()
     {
-        return view('login');
-    }    
-    public function login(LoginRequest $request)
-    {
-        $result = DB::table('users')->where('Email',$request->email)->where('Password',$request->password);
-        
-        if ($result) {
-            $request->session()->regenerate();
-            return redirect()->route('admin.index',compact($result));
-        }
-        return redirect()->route('admin.login');
+        $data['cats'] = Category::paginate(10);
+        return view('admin/category', $data);
     }
 
-    public function logout()
-    {
-        return redirect()->route('admin.login');
-    }
-    public function getFormAdmin()
-    {
-        return view('admin/index');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -45,7 +30,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/addcategory');
     }
 
     /**
@@ -56,7 +41,14 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Category::create($request->all())) {
+            return redirect()->route('category.list')->with([
+                'success' => 'created category success'
+            ]);
+        }
+        return redirect()->back()->with([
+            'fail' => 'created category Fail'
+        ]);
     }
 
     /**
@@ -78,7 +70,9 @@ class LoginController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat = Category::where('Category_id', $id)->get(        
+        );
+        return view('admin/editcategory',compact('cat'));
     }
 
     /**
@@ -90,7 +84,14 @@ class LoginController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($this->categoryService->updateCategory($request, $id)) {
+            return redirect()->route('category.list')->with([
+                'success' => 'update post success'
+            ]);
+        }
+        return redirect()->back()->with([
+            'fail' => 'update post Fail'
+        ]);
     }
 
     /**

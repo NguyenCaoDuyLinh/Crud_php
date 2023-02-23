@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +22,14 @@ Route::post('/login',[LoginController::class,'login'])->name('admin.checklogin')
 Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 Route::get('/dashboard',[LoginController::class,'index'])->name('admin.index');
 Route::get('/listproduct',[ProductController::class,'getListProduct'])->name('product.list');
+Route::post('/save',[ProductController::class,'store'])->name('product.save');
 Route::get('/addproduct',[ProductController::class,'create'])->name('product.add');
+Route::get('/editproduct/{Product_Id}',[ProductController::class,'edit'])->name('product.edit');
+Route::post('/updateproduct/{Product_Id}', [ProductController::class,'update'])->name('product.update');
+
+// --Category
+Route::get('/listcategory',[CategoryController::class,'index'])->name('category.list');
+Route::get('/addcategory',[CategoryController::class,'create'])->name('category.add');
+Route::post('/savecategory',[CategoryController::class,'store'])->name('category.save');
+Route::get('/editcategory/{Category_id}',[CategoryController::class,'edit'])->name('category.edit');
+Route::post('/updatecategory/{Category_id}', [CategoryController::class,'update'])->name('category.update');

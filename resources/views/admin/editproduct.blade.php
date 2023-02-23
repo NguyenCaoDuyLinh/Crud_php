@@ -17,33 +17,35 @@
             <div class="card-header p-3">
                 <h5 class="mb-0">Add Product</h5>
             </div>
-            <form action="{{route('product.save')}}" method="post" enctype="multipart/form-data">
-                @csrf
+            <form action="{{route('product.update', $product[0]->Product_Id)}}" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="card-body p-3 pb-0">
                     <p>Loại</p>
                     <select class="alert alert-primary alert-dismissible text-white" name="category" role="alert">
+                        <option value="0" disabled="true" selected="true">{{$cat_id}}</option>
                         @foreach ($cats as $cat)
-                        <option >{{$cat->Category_name}}</option>
+                        <option>{{$cat->Category_name}}</option>
                         @endforeach
                     </select>
                     <p>Tên Sản Phẩm</p>
-                    <input class="alert alert-primary alert-dismissible text-white" name="Name" role="alert">
+                    <input class="alert alert-primary alert-dismissible text-white" name="Name" role="alert" value="{{$product[0]->Name}}">
                     <p>Nhà Xuất Bản</p>
                     <select class="alert alert-primary alert-dismissible text-white" name="nxb" id="nxb" role="alert">
+                        <option value="0" disabled="true" selected="true">{{$nxb_id}}</option>
                         @foreach ($nxbs as $nxb)
-                        <option >{{$nxb->Publishing_Company_Name}}</option>
+                        <option>{{$nxb->Publishing_Company_Name}}</option>
                         @endforeach
                     </select>
                     <p>Tên Tác giả</p>
-                    <input class="alert alert-primary alert-dismissible text-white" name="Author" role="alert">
+                    <input class="alert alert-primary alert-dismissible text-white" name="Author" role="alert" value="{{$product[0]->Author}}">
                     <p>Giá</p>
-                    <input class="alert alert-primary alert-dismissible text-white" name="Price" role="alert">
+                    <input class="alert alert-primary alert-dismissible text-white" name="Price" role="alert" value="{{$product[0]->Price}}">
                     <p>Số lượng</p>
-                    <input class="alert alert-primary alert-dismissible text-white" name="Quantity" role="alert">
+                    <input class="alert alert-primary alert-dismissible text-white" name="Quantity" role="alert" value="{{$product[0]->Quantity}}">
                     <p>Mô tả</p>
-                    <textarea class="alert alert-primary alert-dismissible text-white" name="Description" role="alert"></textarea>
+                    <textarea class="alert alert-primary alert-dismissible text-white" name="Description" role="alert">{{$product[0]->Description}}</textarea>
                     <p>Ảnh</p>
-                    <input class="alert alert-primary alert-dismissible text-white" name="file_upload" role="alert" type="file">
+                    <input class="alert alert-primary alert-dismissible text-white" name="file_upload" role="alert" type="file" value="{{$product[0]->Avatar}}">
                     <div class="col-lg-3 col-sm-6 col-12">
                         <button class="btn bg-gradient-success w-100 mb-0 toast-btn" type="submit" data-target="successToast">Save</button>
                     </div>

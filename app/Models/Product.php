@@ -15,18 +15,21 @@ class Product extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'Category_id',
-        'SKU',
+    protected $fillable = [     
         'Name',
-        'Publising_company_id',
         'Author',
         'Price',
         'Quantity',
         'Description',
+        'Category_Id',
+        'Publishing_Company_Id',    
         'Date',
-        'Avatar'
-
+        'Avatar',
+        'SKU',
     ];
+    public function cat()
+    {
+        return $this->hasOne(Category::class,'Product_Id','Category_id');
+    }
 
 }
