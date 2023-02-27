@@ -30,7 +30,8 @@ class ProductController extends Controller
     }
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('admin/product')->with('products', $products);
     }
 
     /**
@@ -128,13 +129,38 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->productService->updateProduct($request, $id)) {
-            return redirect()->back()->with([
-                'success' => 'update post success'
-            ]);
-        }
-        return redirect()->back()->with([
-            'fail' => 'update post Fail'
+        // if ($this->productService->updateProduct($request, $id)) {
+        //     return redirect()->back()->with([
+        //         'success' => 'update post success'
+        //     ]);
+        // }
+        // return redirect()->back()->with([
+        //     'fail' => 'update post Fail'
+        // ]);
+        $name = $request->Name;
+        $author = $request->Author;
+        $price = $request->Price;
+        $quantity = $request->Quantity;
+        $description = $request->Description;
+        $date = $request->Date;
+        $avatar = $request->Avatar;
+        $sku = $request->SKU;
+        $category_id = $request->Category_Id;
+        $nxb_id = $request->Publishing_Company_Id;
+        Product::where('product_id', $id)->update([
+            'Name'=>$name,
+            'Author'=>$author,
+            'Price'=>$price,
+            'Quantity'=>$quantity,
+            'Description'=>$description,
+            'Category_Id'=>$category_id,
+            'Publishing_Company_Id'=>$nxb_id,    
+            'Date'=>$date,
+            'Avatar'=>$avatar,
+            'SKU'=>$sku,
+        ]);
+        return redirect()->route('product.list')->with([
+            'success' => 'update product successfully'
         ]);
     }
 
@@ -146,6 +172,35 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::where('Product_Id', $id)->delete();
+        return redirect()->route('product.list')->with([
+            'success' => 'delete product successfully'
+        ]);
+    }
+    public function search(Request $request){
+        $search = $request->input('search');
+  
+        $products = Product::where('Name', 'like', "$search%")
+           ->orWhere('Author', 'like', "$search%")
+           ->get();
+  
+        return view('result')->with('products', $products);
+    }
+  
+    public function viewproduct($id){
+  
+        $product = Product::find($id);
+  
+        return view('product')->with('product', $product);
+    }
+  
+    public function find(Request $request){
+        $search = $request->input('search');
+  
+        $products = Product::where('Name', 'like', "$search%")
+           ->orWhere('Author', 'like', "$search%")
+           ->get();
+  
+        return view('searchresult')->with('products', $products);
     }
 }

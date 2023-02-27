@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Services\CategoryService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Publishing_company;
+use App\Services\ProductService;
 
-class CategoryController extends Controller
+class NxbController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(CategoryService $categoryService)
-    {
-        $this->categoryService = $categoryService;
-    }
+    
     public function index()
     {
-        $data['cats'] = Category::paginate(10);
-        return view('admin/category', $data);
+        $data['nxbs'] = Publishing_company::paginate(10);
+        // $nxbs = $this->alo->getListNXB();
+        return view('admin/nxb', $data);
     }
 
     /**
@@ -31,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin/addcategory');
+        return view('admin/addnxb');
     }
 
     /**
@@ -42,13 +39,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if (Category::create($request->all())) {
-            return redirect()->route('category.list')->with([
-                'success' => 'created category success'
+        if (Publishing_company::create($request->all())) {
+            return redirect()->route('nxb.list')->with([
+                'success' => 'created nxb success'
             ]);
         }
         return redirect()->back()->with([
-            'fail' => 'created category Fail'
+            'fail' => 'created nxb Fail'
         ]);
     }
 
@@ -71,8 +68,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $cat = Category::where('Category_id', $id)->get();
-        return view('admin/editcategory', compact('cat'));
+        $nxb = Publishing_company::where('Publishing_Company_ID', $id)->get();
+        return view('admin/editnxb', compact('nxb'));
     }
 
     /**
@@ -84,20 +81,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // if ($this->categoryService->updateCategory($request, $id)) {
-        //     return redirect()->route('category.list')->with([
-        //         'success' => 'update post success'
-        //     ]);
-        // }
-        // return redirect()->back()->with([
-        //     'fail' => 'update post Fail'
-        // ]);
-        $name = $request->Category_name;
-        Category::where('Category_Id', $id)->update([
-            'Category_name' => $name,
+        $name = $request->Publishing_company_name;
+        Publishing_company::where('Publishing_Company_ID', $id)->update([
+            'Publishing_company_Name' => $name,
         ]);
-        return redirect()->route('category.list')->with([
-            'success' => 'update category successfully'
+        return redirect()->route('nxb.list')->with([
+            'success' => 'update nxb successfully'
         ]);
     }
 
@@ -109,9 +98,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::where('Category_Id', $id)->delete();
-        return redirect()->route('category.list')->with([
-            'success' => 'delete category successfully'
+        Publishing_company::where('Publishing_Company_ID', $id)->delete();
+        return redirect()->route('nxb.list')->with([
+            'success' => 'delete nxb successfully'
         ]);
     }
 }

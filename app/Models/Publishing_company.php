@@ -20,4 +20,8 @@ class Publishing_company extends Model
         'Publishing_Company_ID',
         'Publishing_Company_Name',
     ];
+    public function products()
+    {
+        return $this->hasMany(Product::class,'Publishing_Company_Id','Publishing_Company_ID');
+    }
 }

@@ -29,7 +29,10 @@ class Product extends Model
     ];
     public function cat()
     {
-        return $this->hasOne(Category::class,'Product_Id','Category_id');
+        return $this->hasOne(Category::class,'Category_id','Category_Id');
     }
-
+    public function nxb()
+    {
+        return $this->hasOne(Publishing_company::class,'Publishing_Company_ID','Publishing_Company_Id');
+    }
 }
