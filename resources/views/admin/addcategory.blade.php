@@ -17,13 +17,19 @@
             <div class="card-header p-3">
                 <h5 class="mb-0">Add Category</h5>
             </div>
-            <form action="{{route('category.save')}}" method="post" >
+            <form action="{{route('category.save')}}" method="post">
                 @csrf
                 <div class="card-body p-3 pb-0">
                     <p>Mã Danh mục</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Category_id" role="alert">
+                    @error('Category_id')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Tên Danh mục</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Category_name" role="alert">
+                    @error('Category_name')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <div class="col-lg-3 col-sm-6 col-12">
                         <button class="btn bg-gradient-success w-100 mb-0 toast-btn" type="submit" data-target="successToast">Save</button>
                     </div>

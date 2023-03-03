@@ -22,6 +22,9 @@
                 <div class="card-body p-3 pb-0">
                     <p>Tên Danh mục</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Publishing_Company_Name" role="alert">
+                    @error('Publishing_Company_Name')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <div class="col-lg-3 col-sm-6 col-12">
                         <button class="btn bg-gradient-success w-100 mb-0 toast-btn" type="submit" data-target="successToast">Save</button>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Publishing_company;
+use App\Http\Requests\NxbRequest;
 use App\Services\ProductService;
 
 class NxbController extends Controller
@@ -37,7 +38,7 @@ class NxbController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NxbRequest $request)
     {
         if (Publishing_company::create($request->all())) {
             return redirect()->route('nxb.list')->with([
@@ -79,9 +80,9 @@ class NxbController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NxbRequest $request, $id)
     {
-        $name = $request->Publishing_company_name;
+        $name = $request->Publishing_Company_Name;
         Publishing_company::where('Publishing_Company_ID', $id)->update([
             'Publishing_company_Name' => $name,
         ]);

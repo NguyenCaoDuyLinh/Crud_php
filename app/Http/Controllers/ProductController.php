@@ -52,12 +52,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         if ($request->hasFile('file_upload')) {
             $file = $request->file_upload;
             // $ext = $request->file_upload->extension();
             $file_name = $file->getClientoriginalName();
+            // $ext = md5(rand(10,100)).$file_name;
             $file->move(public_path('product'), $file_name);
         }
         $nxb1 =  DB::table('Publishing_companies')->where('Publishing_Company_Name', $request->nxb)->get('Publishing_Company_ID');
@@ -127,7 +128,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         // if ($this->productService->updateProduct($request, $id)) {
         //     return redirect()->back()->with([
@@ -177,30 +178,30 @@ class ProductController extends Controller
             'success' => 'delete product successfully'
         ]);
     }
-    public function search(Request $request){
-        $search = $request->input('search');
+    // public function search(Request $request){
+    //     $search = $request->input('search');
   
-        $products = Product::where('Name', 'like', "$search%")
-           ->orWhere('Author', 'like', "$search%")
-           ->get();
+    //     $products = Product::where('Name', 'like', "$search%")
+    //        ->orWhere('Author', 'like', "$search%")
+    //        ->get();
   
-        return view('result')->with('products', $products);
-    }
+    //     return view('result')->with('products', $products);
+    // }
   
-    public function viewproduct($id){
+    // public function viewproduct($id){
   
-        $product = Product::find($id);
+    //     $product = Product::find($id);
   
-        return view('product')->with('product', $product);
-    }
+    //     return view('product')->with('product', $product);
+    // }
   
-    public function find(Request $request){
-        $search = $request->input('search');
+    // public function find(Request $request){
+    //     $search = $request->input('search');
   
-        $products = Product::where('Name', 'like', "$search%")
-           ->orWhere('Author', 'like', "$search%")
-           ->get();
+    //     $products = Product::where('Name', 'like', "$search%")
+    //        ->orWhere('Author', 'like', "$search%")
+    //        ->get();
   
-        return view('searchresult')->with('products', $products);
-    }
+    //     return view('searchresult')->with('products', $products);
+    // }
 }

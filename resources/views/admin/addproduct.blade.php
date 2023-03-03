@@ -23,28 +23,49 @@
                     <p>Loại</p>
                     <select class="alert alert-primary alert-dismissible text-white" name="category" role="alert">
                         @foreach ($cats as $cat)
-                        <option >{{$cat->Category_name}}</option>
+                        <option>{{$cat->Category_name}}</option>
                         @endforeach
                     </select>
                     <p>Tên Sản Phẩm</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Name" role="alert">
+                    @error('Name')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Nhà Xuất Bản</p>
                     <select class="alert alert-primary alert-dismissible text-white" name="nxb" id="nxb" role="alert">
                         @foreach ($nxbs as $nxb)
-                        <option >{{$nxb->Publishing_Company_Name}}</option>
+                        <option>{{$nxb->Publishing_Company_Name}}</option>
                         @endforeach
                     </select>
                     <p>Tên Tác giả</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Author" role="alert">
+                    @error('Author')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Giá</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Price" role="alert">
+                    @error('Price')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Số lượng</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Quantity" role="alert">
+                    @error('Quantity')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Mô tả</p>
                     <textarea class="alert alert-primary alert-dismissible text-white" name="Description" role="alert"></textarea>
+                    @error('Description')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Ảnh</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="file_upload" role="alert" type="file">
+                    @error('Avatar')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <div class="col-lg-3 col-sm-6 col-12">
+                        <!-- <a href="{{route('product.list')}}" data-toggle="tooltip" data-original-title="Back">
+                            <i class="material-icons opacity-10">Back</i>
+                        </a> -->
                         <button class="btn bg-gradient-success w-100 mb-0 toast-btn" type="submit" data-target="successToast">Save</button>
                     </div>
                 </div>

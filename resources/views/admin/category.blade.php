@@ -20,16 +20,19 @@
                 </div>
             </div>
             <div class="card-body px-0 pb-2">
-                <a href="{{route('category.add')}}">Add Category</a>
+                <form action="{{route('category.add')}}">
+                    <button class="teal">Add Category</button>
+                </form>
+                <!-- <a href="{{route('category.add')}}">Add Category</a> -->
                 <div class="table-responsive p-0">
                     <table class="table align-items-center justify-content-center mb-0">
 
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Total Product</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">ID</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Category</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Total Product</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,19 +48,19 @@
                                     <p class="text-sm font-weight-bold mb-0">{{ $cat->producta->count() }}</p>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="{{route('category.edit', $cat->Category_id)}}" class="btn-primary" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
+                                    <a href="{{route('category.edit', $cat->Category_id)}}"  data-toggle="tooltip" data-original-title="Edit user">
+                                        <i class="material-icons opacity-10">edit</i>
                                     </a>
-                                    <a href="{{route('category.delete', $cat->Category_id)}}" class="btn-danger" data-toggle="tooltip" data-original-title="Delete user">
-                                        Delete
+                                    <a href="{{route('category.delete', $cat->Category_id)}}"  data-toggle="tooltip" data-original-title="Delete user">
+                                        <i class="material-icons opacity-10">delete</i>
                                     </a>
                                 </td>
                             </tr>
                         </tbody>
                         @endforeach
                     </table>
-                    
-                </div>     
+
+                </div>
             </div>
         </div>
     </div>

@@ -72,6 +72,7 @@
   --bs-link-hover-color: #e91e63;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fcf8e3;
+  
 }
 
 *,
@@ -747,7 +748,17 @@ progress {
   margin-right: calc(-.5 * var(--bs-gutter-x));
   margin-left: calc(-.5 * var(--bs-gutter-x));
 }
-
+.row .col-12 .card .teal{
+  position: relative;
+  background-color: var(--bs-link-color);
+  color: var(--bs-white) !important;
+  width: calc(100% - 950px);  
+  border: var(--bs-link-color);
+  border-radius: 10px;
+  left: calc(100% - 180px);
+  margin: 0px 10px 30px 10px;
+  min-width: 150px;
+}
 .row>* {
   flex-shrink: 0;
   width: 100%;

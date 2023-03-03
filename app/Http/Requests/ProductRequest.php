@@ -26,7 +26,14 @@ class ProductRequest extends FormRequest
         return [
             'Name' => 'required|max:10',
             'Author' => 'required|max:25',
-            'Description' => 'required|max:255'
+            'Description' => 'required|max:255',
+            'Price'=> 'required|max:25',
+            'Quantity'=> 'integer|required|min:0',
+            'Category_Id'=> 'required|max:25',
+            'Publishing_Company_Id'=> 'required|max:25',
+            'Date'=> 'required|max:25',
+            'Avatar'=> 'required|image',
+            'SKU'=> 'required|max:25', 
         ];
     }
 
@@ -35,7 +42,14 @@ class ProductRequest extends FormRequest
         return [
             'Name.required' => 'Name invalid',
             'Author.required' => 'Author invalid',
-            'Description.required' => 'Description invalid'
+            'Description.required' => 'Description invalid',
+            'Price.required' => 'Price invalid',
+            'Quantity.required' => 'Quantity invalid',
+            'Category_Id.required' => 'Category_Id invalid',
+            'Publishing_Company_Id.required' => 'Publishing_Company_Id invalid',
+            'Date.required' => 'Date invalid',
+            'Avatar.required' => 'Avatar invalid',
+            'SKU.required' => 'SKU invalid',
         ];
     }
 }

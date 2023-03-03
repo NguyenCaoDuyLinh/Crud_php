@@ -20,10 +20,11 @@
             <form action="{{route('nxb.update',$nxb[0]->Publishing_Company_ID)}}" method="post" >
                 @csrf
                 <div class="card-body p-3 pb-0">
-                    <p>Mã Nhà Xuất Bảnc</p>
-                    <input class="alert alert-primary alert-dismissible text-white" name="Publishing_Company_ID" role="alert" value="{{$nxb[0]->Publishing_Company_ID}}">
                     <p>Tên Nhà Xuất Bản</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Publishing_Company_Name" role="alert" value="{{$nxb[0]->Publishing_Company_Name}}">
+                    @error('Publishing_Company_Name')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <div class="col-lg-3 col-sm-6 col-12">
                         <button class="btn bg-gradient-success w-100 mb-0 toast-btn" type="submit" data-target="successToast">Save</button>
                     </div>

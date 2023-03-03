@@ -29,6 +29,9 @@
                     </select>
                     <p>Tên Sản Phẩm</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Name" role="alert" value="{{$product[0]->Name}}">
+                    @error('Name')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Nhà Xuất Bản</p>
                     <select class="alert alert-primary alert-dismissible text-white" name="nxb" id="nxb" role="alert">
                         <option value="0" disabled="true" selected="true">{{$nxb_id}}</option>
@@ -38,14 +41,30 @@
                     </select>
                     <p>Tên Tác giả</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Author" role="alert" value="{{$product[0]->Author}}">
+                    @error('Author')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Giá</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Price" role="alert" value="{{$product[0]->Price}}">
+                    @error('Price')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Số lượng</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Quantity" role="alert" value="{{$product[0]->Quantity}}">
+                    @error('Quantity')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Mô tả</p>
                     <textarea class="alert alert-primary alert-dismissible text-white" name="Description" role="alert">{{$product[0]->Description}}</textarea>
+                    @error('Description')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <p>Ảnh</p>
-                    <input class="alert alert-primary alert-dismissible text-white" name="file_upload" role="alert" type="file" value="{{$product[0]->Avatar}}">
+                    <input class="alert alert-primary alert-dismissible text-white" name="file_upload" role="alert" type="file" >
+                    <img src="{{asset('product/'.$product[0]->Avatar)}}" width="50px" height="50px" alt="Image">
+                    @error('Avatar')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <div class="col-lg-3 col-sm-6 col-12">
                         <button class="btn bg-gradient-success w-100 mb-0 toast-btn" type="submit" data-target="successToast">Save</button>
                     </div>

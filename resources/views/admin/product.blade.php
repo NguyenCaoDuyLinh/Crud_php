@@ -20,22 +20,25 @@
                 </div>
             </div>
             <div class="card-body px-0 pb-2">
-                <a href="{{route('product.add')}}">Add product</a>
+                <form action="{{route('product.add')}}">
+                    <button class="teal">Add product</button>
+                </form>
+                <!-- <a href="{{route('product.add')}}">Add product</a> -->
                 <div class="table-responsive p-0">
                     <table class="table align-items-center justify-content-center mb-0">
 
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Author</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Publishing Company</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quantity</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Image</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">ID</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Category</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Name</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Author</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Publishing Company</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Price</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Quantity</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Description</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Image</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,7 +63,7 @@
                                     <p class="text-sm font-weight-bold mb-0">{{ $product->Price }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-sm font-weight-bold mb-0">{{ $product->Quantity }}</p>
+                                    <p class="text-center font-weight-bold mb-0">{{ $product->Quantity }}</p>
                                 </td>
                                 <td>
                                     <p class="text-sm font-weight-bold mb-0">{{ $product->Description }}</p>
@@ -72,18 +75,18 @@
                                 </td>
                                 <td class="align-middle">
                                     <a href="{{ route('product.edit', $product->Product_Id) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
+                                        <i class="material-icons opacity-10" >edit</i>
                                     </a>
                                     <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
-                                        Delete
+                                        <i class="material-icons opacity-10">delete</i>
                                     </a>
                                 </td>
                             </tr>
                         </tbody>
                         @endforeach
                     </table>
-                    
-                </div>     
+
+                </div>
             </div>
         </div>
     </div>

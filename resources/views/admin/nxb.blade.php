@@ -20,16 +20,19 @@
                 </div>
             </div>
             <div class="card-body px-0 pb-2">
-                <a href="{{route('nxb.add')}}">Add NXB</a>
+                <form action="{{route('nxb.add')}}">
+                    <button class="teal">Add NXB</button>
+                </form>
+                <!-- <a href="{{route('nxb.add')}}">Add NXB</a> -->
                 <div class="table-responsive p-0">
                     <table class="table align-items-center justify-content-center mb-0">
 
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NXB</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Total Product</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">ID</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">NXB</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Total Product</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,11 +48,11 @@
                                     <p class="text-sm font-weight-bold mb-0">{{ $nxb->products->count() }}</p>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="{{route('nxb.edit', $nxb->Publishing_Company_ID)}}" class="btn-primary" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
+                                    <a href="{{route('nxb.edit', $nxb->Publishing_Company_ID)}}"  data-toggle="tooltip" data-original-title="Edit user">
+                                        <i class="material-icons opacity-10" value="edit">edit</i>
                                     </a>
-                                    <a href="{{route('nxb.delete', $nxb->Publishing_Company_ID)}}" class="btn-danger" data-toggle="tooltip" data-original-title="Delete user">
-                                        Delete
+                                    <a href="{{route('nxb.delete', $nxb->Publishing_Company_ID)}}"  data-toggle="tooltip" data-original-title="Delete user">
+                                        <i class="material-icons opacity-10" value="edit">delete</i>
                                     </a>
                                 </td>
                             </tr>

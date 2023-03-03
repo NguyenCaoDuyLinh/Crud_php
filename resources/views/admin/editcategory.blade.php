@@ -24,6 +24,9 @@
                     <input class="alert alert-primary alert-dismissible text-white" name="Category_id" role="alert" value="{{$cat[0]->Category_id}}">
                     <p>Tên Danh mục</p>
                     <input class="alert alert-primary alert-dismissible text-white" name="Category_name" role="alert" value="{{$cat[0]->Category_name}}">
+                    @error('Category_name')
+                    <p> {{ $message }} </p>
+                    @enderror
                     <div class="col-lg-3 col-sm-6 col-12">
                         <button class="btn bg-gradient-success w-100 mb-0 toast-btn" type="submit" data-target="successToast">Save</button>
                     </div>

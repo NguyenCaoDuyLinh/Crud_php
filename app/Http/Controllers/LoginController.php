@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use Illuminate\Contracts\Session\Session;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-session_start();
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
     /**
@@ -18,20 +19,43 @@ class LoginController extends Controller
     public function index()
     {
         return view('login');
-    }    
-    public function login(LoginRequest $request)
+    }
+    public function login(Request $request)
     {
-        $result = DB::table('users')->where('Email',$request->email)->where('Password',$request->password);
-        
-        if ($result) {
-            $request->session()->regenerate();
-            return redirect()->route('admin.index',compact($result));
+        $this->validate($request,[
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+        $email = $request->input('email');
+        if (Auth::attempt($request->only('email', 'password'))){
+            return redirect()->route('product.list');
+        }else{
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
         }
-        return redirect()->route('admin.login');
+        // $email = $request->input('email');
+        // $password = $request->input('password');
+        // if (Auth::attempt([
+        //     'Email' => $email,
+        //     'Password' => $password,
+        // ])) {
+        //     $request->session()->regenerate();
+        //     $user = User::where('Email',$email)->first();
+        //     Auth::login($user);
+        //     return redirect()->route('admin.index');
+        // }
+        // $user = User::where('Email',$email)->first();
+        // if($user){
+        //     $request->session()->regenerate();
+        //     return redirect()->route('admin.index');
+        // }
+        // return redirect()->route('admin.index');
     }
 
     public function logout()
     {
+        Auth::logout();
         return redirect()->route('admin.login');
     }
     public function getFormAdmin()
