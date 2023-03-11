@@ -31,6 +31,11 @@ class ProductService
 
         return $cat;
     }
+    function get4Product(){
+        $product = $this->product->orderBy('Product_Id', 'desc')->take(4)->get();
+
+        return $product;
+    }
     function getListNXB()
     {
         $nxb = $this->nxb->get();
@@ -50,6 +55,7 @@ class ProductService
         }
     }
     function updateProduct($request, $id) {
+        // $num = filter.var(,FILTER_SANITZE_NUMBER_INT);
         try {
             $this->product = Product::where('Product_Id', $id);
             $this->product->Name = $request->Name;

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NxbController;
 use App\Http\Controllers\ProductController;
@@ -51,6 +52,6 @@ Route::group(['prefix'=>'admin','middleware' => 'admin'], function () {
     Route::post('/updatenxb/{Publishing_Company_ID}', [NxbController::class, 'update'])->name('nxb.update');
     Route::get('/delete/{Publishing_Company_ID}', [NxbController::class, 'destroy'])->name('nxb.delete');
 });
-
+Route::get('/home', [HomeController::class, 'index'])->name('user.home');
 // --Search
 

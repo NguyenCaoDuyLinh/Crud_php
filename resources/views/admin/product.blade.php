@@ -60,7 +60,7 @@
                                     <p class="text-center font-weight-bold mb-0">{{ $product->Publishing_Company_Id }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-sm font-weight-bold mb-0">{{ $product->Price }}</p>
+                                    <p class="text-sm font-weight-bold mb-0">{{ number_format($product->Price) }}</p>
                                 </td>
                                 <td>
                                     <p class="text-center font-weight-bold mb-0">{{ $product->Quantity }}</p>
