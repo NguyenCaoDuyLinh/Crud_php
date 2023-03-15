@@ -20,7 +20,12 @@ class HomeController extends Controller
         $products = $this->productService->get4Product();
         return view('home',compact('products'));
     }
-
+    public function getAllproducts(){
+        $products = $this->productService->get4Product();
+        $cats = $this->productService->getListCate();
+        $nxbs = $this->productService->getListNXB();
+        return view('book',compact('products','cats','nxbs'));
+    }
     /**
      * Show the form for creating a new resource.
      *

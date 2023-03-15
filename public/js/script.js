@@ -18,6 +18,18 @@ const sr= ScrollReveal({
 	duration: 2500,	
 	reset: false
 })
+const icon = document.querySelector('.bx-search');
+const search = document.querySelector('.search');
+icon.onclick = function(){
+	search.classList.toggle('active');
+}
+let arrow = document.querySelectorAll(".arrow");
+for (var i = 0; i < arrow.length; i++) {
+	arrow[i].addEventListener("click", (e)=>{
+	let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+	arrowParent.classList.toggle("showMenu");
+	});
+}
 sr.reveal ('.home-text',{delay:300});
 sr.reveal ('.home-img',{delay:400});
 sr.reveal ('.container',{delay:300});

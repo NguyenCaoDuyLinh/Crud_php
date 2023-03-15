@@ -53,5 +53,6 @@ Route::group(['prefix'=>'admin','middleware' => 'admin'], function () {
     Route::get('/delete/{Publishing_Company_ID}', [NxbController::class, 'destroy'])->name('nxb.delete');
 });
 Route::get('/home', [HomeController::class, 'index'])->name('user.home');
+Route::get('/book', [HomeController::class, 'getAllproducts']);
 // --Search
 
